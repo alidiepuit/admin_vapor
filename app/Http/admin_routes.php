@@ -71,7 +71,24 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::post(config('laraadmin.adminRoute') . '/create_backup_ajax', 'LA\BackupsController@create_backup_ajax');
 	Route::get(config('laraadmin.adminRoute') . '/downloadBackup/{id}', 'LA\BackupsController@downloadBackup');
 
-	/* ================== Posts ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/posts', 'LA\PostsController');
-	Route::get(config('laraadmin.adminRoute') . '/post_dt_ajax', 'LA\PostsController@dtajax');
+
+	/* ================== Frontend_posts ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_posts', 'LA\Frontend_postsController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_post_dt_ajax', 'LA\Frontend_postsController@dtajax');
+
+	/* ================== Frontend_users ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_users', 'LA\Frontend_usersController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_user_dt_ajax', 'LA\Frontend_usersController@dtajax');
+
+	/* ================== Frontend_menu_items ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_menu_items', 'LA\Frontend_menu_itemsController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_menu_item_dt_ajax', 'LA\Frontend_menu_itemsController@dtajax');
+
+	/* ================== Frontend_menu_pos ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_menu_pos', 'LA\Frontend_menu_posController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_menu_po_dt_ajax', 'LA\Frontend_menu_posController@dtajax');
+
+	/* ================== Frontend_post_types ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_post_types', 'LA\Frontend_post_typesController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_post_type_dt_ajax', 'LA\Frontend_post_typesController@dtajax');
 });

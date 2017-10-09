@@ -32,7 +32,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        pr(123);
         $roleCount = \App\Role::count();
 		if($roleCount != 0) {
 			if($roleCount != 0) {

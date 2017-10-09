@@ -17,37 +17,37 @@ use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
-use App\Models\Post;
+use App\Models\Frontend_post_type;
 
-class PostsController extends Controller
+class Frontend_post_typesController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'post_title';
-	public $listing_cols = ['id', 'post_id', 'post_title', 'post_content'];
+	public $view_col = 'title';
+	public $listing_cols = ['id', 'title'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 			$this->middleware(function ($request, $next) {
-				$this->listing_cols = ModuleFields::listingColumnAccessScan('Posts', $this->listing_cols);
+				$this->listing_cols = ModuleFields::listingColumnAccessScan('Frontend_post_types', $this->listing_cols);
 				return $next($request);
 			});
 		} else {
-			$this->listing_cols = ModuleFields::listingColumnAccessScan('Posts', $this->listing_cols);
+			$this->listing_cols = ModuleFields::listingColumnAccessScan('Frontend_post_types', $this->listing_cols);
 		}
 	}
 	
 	/**
-	 * Display a listing of the Posts.
+	 * Display a listing of the Frontend_post_types.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
 	{
-		$module = Module::get('Posts');
+		$module = Module::get('Frontend_post_types');
 		
 		if(Module::hasAccess($module->id)) {
-			return View('la.posts.index', [
+			return View('la.frontend_post_types.index', [
 				'show_actions' => $this->show_action,
 				'listing_cols' => $this->listing_cols,
 				'module' => $module
@@ -58,7 +58,7 @@ class PostsController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new post.
+	 * Show the form for creating a new frontend_post_type.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -68,16 +68,16 @@ class PostsController extends Controller
 	}
 
 	/**
-	 * Store a newly created post in database.
+	 * Store a newly created frontend_post_type in database.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request)
 	{
-		if(Module::hasAccess("Posts", "create")) {
+		if(Module::hasAccess("Frontend_post_types", "create")) {
 		
-			$rules = Module::validateRules("Posts", $request);
+			$rules = Module::validateRules("Frontend_post_types", $request);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -85,9 +85,9 @@ class PostsController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
 			
-			$insert_id = Module::insert("Posts", $request);
+			$insert_id = Module::insert("Frontend_post_types", $request);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.posts.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.frontend_post_types.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -95,30 +95,30 @@ class PostsController extends Controller
 	}
 
 	/**
-	 * Display the specified post.
+	 * Display the specified frontend_post_type.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		if(Module::hasAccess("Posts", "view")) {
+		if(Module::hasAccess("Frontend_post_types", "view")) {
 			
-			$post = Post::find($id);
-			if(isset($post->id)) {
-				$module = Module::get('Posts');
-				$module->row = $post;
+			$frontend_post_type = Frontend_post_type::find($id);
+			if(isset($frontend_post_type->id)) {
+				$module = Module::get('Frontend_post_types');
+				$module->row = $frontend_post_type;
 				
-				return view('la.posts.show', [
+				return view('la.frontend_post_types.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
 					'no_header' => true,
 					'no_padding' => "no-padding"
-				])->with('post', $post);
+				])->with('frontend_post_type', $frontend_post_type);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("post"),
+					'record_name' => ucfirst("frontend_post_type"),
 				]);
 			}
 		} else {
@@ -127,28 +127,28 @@ class PostsController extends Controller
 	}
 
 	/**
-	 * Show the form for editing the specified post.
+	 * Show the form for editing the specified frontend_post_type.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("Posts", "edit")) {			
-			$post = Post::find($id);
-			if(isset($post->id)) {	
-				$module = Module::get('Posts');
+		if(Module::hasAccess("Frontend_post_types", "edit")) {			
+			$frontend_post_type = Frontend_post_type::find($id);
+			if(isset($frontend_post_type->id)) {	
+				$module = Module::get('Frontend_post_types');
 				
-				$module->row = $post;
+				$module->row = $frontend_post_type;
 				
-				return view('la.posts.edit', [
+				return view('la.frontend_post_types.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,
-				])->with('post', $post);
+				])->with('frontend_post_type', $frontend_post_type);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("post"),
+					'record_name' => ucfirst("frontend_post_type"),
 				]);
 			}
 		} else {
@@ -157,7 +157,7 @@ class PostsController extends Controller
 	}
 
 	/**
-	 * Update the specified post in storage.
+	 * Update the specified frontend_post_type in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
@@ -165,9 +165,9 @@ class PostsController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		if(Module::hasAccess("Posts", "edit")) {
+		if(Module::hasAccess("Frontend_post_types", "edit")) {
 			
-			$rules = Module::validateRules("Posts", $request, true);
+			$rules = Module::validateRules("Frontend_post_types", $request, true);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -175,9 +175,9 @@ class PostsController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();;
 			}
 			
-			$insert_id = Module::updateRow("Posts", $request, $id);
+			$insert_id = Module::updateRow("Frontend_post_types", $request, $id);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.posts.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.frontend_post_types.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -185,18 +185,18 @@ class PostsController extends Controller
 	}
 
 	/**
-	 * Remove the specified post from storage.
+	 * Remove the specified frontend_post_type from storage.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id)
 	{
-		if(Module::hasAccess("Posts", "delete")) {
-			Post::find($id)->delete();
+		if(Module::hasAccess("Frontend_post_types", "delete")) {
+			Frontend_post_type::find($id)->delete();
 			
 			// Redirecting to index() method
-			return redirect()->route(config('laraadmin.adminRoute') . '.posts.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.frontend_post_types.index');
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -209,11 +209,11 @@ class PostsController extends Controller
 	 */
 	public function dtajax()
 	{
-		$values = DB::table('posts')->select($this->listing_cols)->whereNull('deleted_at');
+		$values = DB::table('frontend_post_types')->select($this->listing_cols)->whereNull('deleted_at');
 		$out = Datatables::of($values)->make();
 		$data = $out->getData();
 
-		$fields_popup = ModuleFields::getModuleFields('Posts');
+		$fields_popup = ModuleFields::getModuleFields('Frontend_post_types');
 		
 		for($i=0; $i < count($data->data); $i++) {
 			for ($j=0; $j < count($this->listing_cols); $j++) { 
@@ -222,7 +222,7 @@ class PostsController extends Controller
 					$data->data[$i][$j] = ModuleFields::getFieldValue($fields_popup[$col], $data->data[$i][$j]);
 				}
 				if($col == $this->view_col) {
-					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/posts/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/frontend_post_types/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
 				}
 				// else if($col == "author") {
 				//    $data->data[$i][$j];
@@ -231,12 +231,12 @@ class PostsController extends Controller
 			
 			if($this->show_action) {
 				$output = '';
-				if(Module::hasAccess("Posts", "edit")) {
-					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/posts/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+				if(Module::hasAccess("Frontend_post_types", "edit")) {
+					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/frontend_post_types/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
 				
-				if(Module::hasAccess("Posts", "delete")) {
-					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.posts.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+				if(Module::hasAccess("Frontend_post_types", "delete")) {
+					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.frontend_post_types.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
 					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
 					$output .= Form::close();
 				}

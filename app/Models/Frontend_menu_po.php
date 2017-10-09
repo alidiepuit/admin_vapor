@@ -9,11 +9,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model
+class Frontend_menu_po extends Model
 {
     use SoftDeletes;
 	
-	protected $table = 'posts';
+	protected $table = 'frontend_menu_pos';
 	
 	protected $hidden = [
         
