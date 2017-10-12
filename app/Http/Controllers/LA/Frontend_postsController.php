@@ -140,7 +140,7 @@ class Frontend_postsController extends Controller
 				$module = Module::get('Frontend_posts');
 				
 				$module->row = $frontend_post;
-				
+				// pr($this->view_col);
 				return view('la.frontend_posts.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,

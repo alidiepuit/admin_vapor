@@ -158,6 +158,8 @@ return [
 
 
         Dwij\Laraadmin\LAProvider::class,
+
+        JeroenNoten\LaravelCkEditor\ServiceProvider::class,
     ],
 
     /*

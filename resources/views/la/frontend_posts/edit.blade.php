@@ -28,12 +28,13 @@
 	</div>
 	<div class="box-body">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-8 col-md-offset-2 haha">
 				{!! Form::model($frontend_post, ['route' => [config('laraadmin.adminRoute') . '.frontend_posts.update', $frontend_post->id ], 'method'=>'PUT', 'id' => 'frontend_post-edit-form']) !!}
 					@la_form($module)
 					
 					{{--
 					@la_input($module, 'post_title')
+          @la_input($module, 'post_title')
 					@la_input($module, 'post_slug')
 					@la_input($module, 'post_content')
 					@la_input($module, 'post_image')
@@ -52,13 +53,13 @@
 </div>
 
 @endsection
-
 @push('scripts')
 <script>
 $(function () {
 	$("#frontend_post-edit-form").validate({
 		
 	});
+  CKEDITOR.replace( 'post_content' );
 });
 </script>
 @endpush
