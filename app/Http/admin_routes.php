@@ -91,4 +91,37 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== Frontend_post_types ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/frontend_post_types', 'LA\Frontend_post_typesController');
 	Route::get(config('laraadmin.adminRoute') . '/frontend_post_type_dt_ajax', 'LA\Frontend_post_typesController@dtajax');
+
+	/* ================== Frontend_enrolls ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_enrolls', 'LA\Frontend_enrollsController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_enroll_dt_ajax', 'LA\Frontend_enrollsController@dtajax');
+
+
+	/* ================== Frontend_tools ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_tools', 'LA\Frontend_toolsController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_tool_dt_ajax', 'LA\Frontend_toolsController@dtajax');
+
+	/* ================== Frontend_orders ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_orders', 'LA\Frontend_ordersController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_order_dt_ajax', 'LA\Frontend_ordersController@dtajax');
+
+	/* ================== Frontend_grouporders ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/frontend_grouporders', 'LA\Frontend_groupordersController');
+	Route::get(config('laraadmin.adminRoute') . '/frontend_grouporder_dt_ajax', 'LA\Frontend_groupordersController@dtajax');
+
+	/* ================== FE_Type_Services ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_type_services', 'LA\FE_Type_ServicesController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_type_service_dt_ajax', 'LA\FE_Type_ServicesController@dtajax');
+
+	/* ================== FE_Services ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_services', 'LA\FE_ServicesController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_service_dt_ajax', 'LA\FE_ServicesController@dtajax');
+
+	/* ================== FE_Type_Machines ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_type_machines', 'LA\FE_Type_MachinesController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_type_machine_dt_ajax', 'LA\FE_Type_MachinesController@dtajax');
+
+	/* ================== FE_Type_Locations ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_type_locations', 'LA\FE_Type_LocationsController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_type_location_dt_ajax', 'LA\FE_Type_LocationsController@dtajax');
 });
