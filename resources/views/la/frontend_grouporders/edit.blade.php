@@ -33,11 +33,17 @@
 					@la_form($module)
 					
 					{{--
-					@la_input($module, 'grouporder_order')
-					@la_input($module, 'grouporder_user')
 					@la_input($module, 'grouporder_location')
 					@la_input($module, 'grouporder_datetime')
 					@la_input($module, 'grouporder_typeloc')
+					@la_input($module, 'grouporder_latitude')
+					@la_input($module, 'grouporder_longitude')
+					@la_input($module, 'grouporder_user')
+					@la_input($module, 'grouporder_order')
+					@la_input($module, 'grouporder_amount')
+					@la_input($module, 'grouporder_cost')
+					@la_input($module, 'grouporder_discount')
+					@la_input($module, 'grouporder_status')
 					--}}
                     <br>
 					<div class="form-group">

@@ -22,8 +22,8 @@ use App\Models\Frontend_order;
 class Frontend_ordersController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'order_typemachine';
-	public $listing_cols = ['id', 'order_typemachine', 'order_power', 'order_amount', 'grouporder_id'];
+	public $view_col = 'order_typeservice';
+	public $listing_cols = ['id', 'order_typeservice', 'order_typemachine', 'order_power', 'order_amount', 'order_grouporder'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns

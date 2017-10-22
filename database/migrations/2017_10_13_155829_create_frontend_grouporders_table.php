@@ -18,11 +18,17 @@ class CreateFrontendGroupordersTable extends Migration
     public function up()
     {
         Module::generate("Frontend_grouporders", 'frontend_grouporders', 'grouporder_user', 'fa-cube', [
-            ["grouporder_order", "Order", "TextField", false, "", 0, 256, false],
-            ["grouporder_user", "user", "TextField", false, "", 0, 256, false],
-            ["grouporder_location", "Địa điểm", "Address", false, "", 0, 256, true],
+            ["grouporder_location", "Địa điểm", "Textarea", false, "", 0, 256, true],
             ["grouporder_datetime", "Date", "Datetime", false, "", 0, 0, true],
             ["grouporder_typeloc", "Loại địa điểm", "Dropdown", false, "", 0, 0, false, "@fe_type_locations"],
+            ["grouporder_latitude", "Latitude", "TextField", false, "", 0, 256, false],
+            ["grouporder_longitude", "Longitude", "TextField", false, "", 0, 256, false],
+            ["grouporder_user", "User", "Dropdown", false, "", 0, 0, false, "@frontend_users"],
+            ["grouporder_order", "List Order", "Multiselect", false, "", 0, 0, false, "@frontend_orders"],
+            ["grouporder_amount", "Total number", "Integer", false, "", 0, 11, false],
+            ["grouporder_cost", "Cost", "Float", false, "", 0, 11, false],
+            ["grouporder_discount", "Discount", "Float", false, "0", 0, 11, false],
+            ["grouporder_status", "Status", "Dropdown", false, "", 0, 0, false, "@fe_status_orders"],
         ]);
 		
 		/*

@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Frontend grouporders")
-@section("contentheader_description", "Frontend grouporders listing")
-@section("section", "Frontend grouporders")
+@section("contentheader_title", "Fe discounts")
+@section("contentheader_description", "Fe discounts listing")
+@section("section", "Fe discounts")
 @section("sub_section", "Listing")
-@section("htmlheader_title", "Frontend grouporders Listing")
+@section("htmlheader_title", "Fe discounts Listing")
 
 @section("headerElems")
-@la_access("Frontend_grouporders", "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Frontend grouporder</button>
+@la_access("Fe_discounts", "create")
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Fe discount</button>
 @endla_access
 @endsection
 
@@ -45,31 +45,22 @@
 	</div>
 </div>
 
-@la_access("Frontend_grouporders", "create")
+@la_access("Fe_discounts", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Frontend grouporder</h4>
+				<h4 class="modal-title" id="myModalLabel">Add Fe discount</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\Frontend_groupordersController@store', 'id' => 'frontend_grouporder-add-form']) !!}
+			{!! Form::open(['action' => 'LA\Fe_discountsController@store', 'id' => 'fe_discount-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
 					
 					{{--
-					@la_input($module, 'grouporder_location')
-					@la_input($module, 'grouporder_datetime')
-					@la_input($module, 'grouporder_typeloc')
-					@la_input($module, 'grouporder_latitude')
-					@la_input($module, 'grouporder_longitude')
-					@la_input($module, 'grouporder_user')
-					@la_input($module, 'grouporder_order')
-					@la_input($module, 'grouporder_amount')
-					@la_input($module, 'grouporder_cost')
-					@la_input($module, 'grouporder_discount')
-					@la_input($module, 'grouporder_status')
+					@la_input($module, 'discount_percent')
+					@la_input($module, 'discount_amount')
 					--}}
 				</div>
 			</div>
@@ -96,7 +87,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/frontend_grouporder_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/fe_discount_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -106,7 +97,7 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#frontend_grouporder-add-form").validate({
+	$("#fe_discount-add-form").validate({
 		
 	});
 });

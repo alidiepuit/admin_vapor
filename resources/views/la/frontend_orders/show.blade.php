@@ -107,10 +107,11 @@
 						<h4>General Info</h4>
 					</div>
 					<div class="panel-body">
+						@la_display($module, 'order_typeservice')
 						@la_display($module, 'order_typemachine')
 						@la_display($module, 'order_power')
 						@la_display($module, 'order_amount')
-						@la_display($module, 'grouporder_id')
+						@la_display($module, 'order_grouporder')
 					</div>
 				</div>
 			</div>

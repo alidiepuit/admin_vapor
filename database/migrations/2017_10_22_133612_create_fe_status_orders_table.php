@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 
-class CreateFrontendOrdersTable extends Migration
+class CreateFeStatusOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,12 +17,8 @@ class CreateFrontendOrdersTable extends Migration
      */
     public function up()
     {
-        Module::generate("Frontend_orders", 'frontend_orders', 'order_typeservice', 'fa-bullhorn', [
-            ["order_typeservice", "Type Service", "Dropdown", false, "", 0, 0, false, "@fe_type_services"],
-            ["order_typemachine", "Type Machine", "Dropdown", false, "", 0, 0, false, "@fe_type_machines"],
-            ["order_power", "Công suất", "String", false, "", 0, 256, true],
-            ["order_amount", "Số lượng", "Integer", false, "", 1, 11, true],
-            ["order_grouporder", "Group Order", "Dropdown", false, "", 0, 0, false, "@frontend_grouporders"],
+        Module::generate("Fe_status_orders", 'fe_status_orders', 'status_title', 'fa-stack-overflow', [
+            ["status_title", "Title", "TextField", false, "", 0, 256, true],
         ]);
 		
 		/*
@@ -68,8 +64,8 @@ class CreateFrontendOrdersTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('frontend_orders')) {
-            Schema::drop('frontend_orders');
+        if (Schema::hasTable('fe_status_orders')) {
+            Schema::drop('fe_status_orders');
         }
     }
 }

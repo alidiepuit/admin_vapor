@@ -33,10 +33,11 @@
 					@la_form($module)
 					
 					{{--
+					@la_input($module, 'order_typeservice')
 					@la_input($module, 'order_typemachine')
 					@la_input($module, 'order_power')
 					@la_input($module, 'order_amount')
-					@la_input($module, 'grouporder_id')
+					@la_input($module, 'order_grouporder')
 					--}}
                     <br>
 					<div class="form-group">

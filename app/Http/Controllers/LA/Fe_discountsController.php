@@ -17,37 +17,37 @@ use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 
-use App\Models\Frontend_grouporder;
+use App\Models\Fe_discount;
 
-class Frontend_groupordersController extends Controller
+class Fe_discountsController extends Controller
 {
 	public $show_action = true;
-	public $view_col = 'grouporder_user';
-	public $listing_cols = ['id', 'grouporder_location', 'grouporder_datetime', 'grouporder_typeloc', 'grouporder_latitude', 'grouporder_longitude', 'grouporder_user', 'grouporder_order', 'grouporder_amount', 'grouporder_cost', 'grouporder_discount', 'grouporder_status'];
+	public $view_col = 'discount_percent';
+	public $listing_cols = ['id', 'discount_percent', 'discount_amount'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
 		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 			$this->middleware(function ($request, $next) {
-				$this->listing_cols = ModuleFields::listingColumnAccessScan('Frontend_grouporders', $this->listing_cols);
+				$this->listing_cols = ModuleFields::listingColumnAccessScan('Fe_discounts', $this->listing_cols);
 				return $next($request);
 			});
 		} else {
-			$this->listing_cols = ModuleFields::listingColumnAccessScan('Frontend_grouporders', $this->listing_cols);
+			$this->listing_cols = ModuleFields::listingColumnAccessScan('Fe_discounts', $this->listing_cols);
 		}
 	}
 	
 	/**
-	 * Display a listing of the Frontend_grouporders.
+	 * Display a listing of the Fe_discounts.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
 	{
-		$module = Module::get('Frontend_grouporders');
+		$module = Module::get('Fe_discounts');
 		
 		if(Module::hasAccess($module->id)) {
-			return View('la.frontend_grouporders.index', [
+			return View('la.fe_discounts.index', [
 				'show_actions' => $this->show_action,
 				'listing_cols' => $this->listing_cols,
 				'module' => $module
@@ -58,7 +58,7 @@ class Frontend_groupordersController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new frontend_grouporder.
+	 * Show the form for creating a new fe_discount.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -68,16 +68,16 @@ class Frontend_groupordersController extends Controller
 	}
 
 	/**
-	 * Store a newly created frontend_grouporder in database.
+	 * Store a newly created fe_discount in database.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request)
 	{
-		if(Module::hasAccess("Frontend_grouporders", "create")) {
+		if(Module::hasAccess("Fe_discounts", "create")) {
 		
-			$rules = Module::validateRules("Frontend_grouporders", $request);
+			$rules = Module::validateRules("Fe_discounts", $request);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -85,9 +85,9 @@ class Frontend_groupordersController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
 			
-			$insert_id = Module::insert("Frontend_grouporders", $request);
+			$insert_id = Module::insert("Fe_discounts", $request);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.frontend_grouporders.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.fe_discounts.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -95,30 +95,30 @@ class Frontend_groupordersController extends Controller
 	}
 
 	/**
-	 * Display the specified frontend_grouporder.
+	 * Display the specified fe_discount.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		if(Module::hasAccess("Frontend_grouporders", "view")) {
+		if(Module::hasAccess("Fe_discounts", "view")) {
 			
-			$frontend_grouporder = Frontend_grouporder::find($id);
-			if(isset($frontend_grouporder->id)) {
-				$module = Module::get('Frontend_grouporders');
-				$module->row = $frontend_grouporder;
+			$fe_discount = Fe_discount::find($id);
+			if(isset($fe_discount->id)) {
+				$module = Module::get('Fe_discounts');
+				$module->row = $fe_discount;
 				
-				return view('la.frontend_grouporders.show', [
+				return view('la.fe_discounts.show', [
 					'module' => $module,
 					'view_col' => $this->view_col,
 					'no_header' => true,
 					'no_padding' => "no-padding"
-				])->with('frontend_grouporder', $frontend_grouporder);
+				])->with('fe_discount', $fe_discount);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("frontend_grouporder"),
+					'record_name' => ucfirst("fe_discount"),
 				]);
 			}
 		} else {
@@ -127,28 +127,28 @@ class Frontend_groupordersController extends Controller
 	}
 
 	/**
-	 * Show the form for editing the specified frontend_grouporder.
+	 * Show the form for editing the specified fe_discount.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("Frontend_grouporders", "edit")) {			
-			$frontend_grouporder = Frontend_grouporder::find($id);
-			if(isset($frontend_grouporder->id)) {	
-				$module = Module::get('Frontend_grouporders');
+		if(Module::hasAccess("Fe_discounts", "edit")) {			
+			$fe_discount = Fe_discount::find($id);
+			if(isset($fe_discount->id)) {	
+				$module = Module::get('Fe_discounts');
 				
-				$module->row = $frontend_grouporder;
+				$module->row = $fe_discount;
 				
-				return view('la.frontend_grouporders.edit', [
+				return view('la.fe_discounts.edit', [
 					'module' => $module,
 					'view_col' => $this->view_col,
-				])->with('frontend_grouporder', $frontend_grouporder);
+				])->with('fe_discount', $fe_discount);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
-					'record_name' => ucfirst("frontend_grouporder"),
+					'record_name' => ucfirst("fe_discount"),
 				]);
 			}
 		} else {
@@ -157,7 +157,7 @@ class Frontend_groupordersController extends Controller
 	}
 
 	/**
-	 * Update the specified frontend_grouporder in storage.
+	 * Update the specified fe_discount in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
@@ -165,9 +165,9 @@ class Frontend_groupordersController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		if(Module::hasAccess("Frontend_grouporders", "edit")) {
+		if(Module::hasAccess("Fe_discounts", "edit")) {
 			
-			$rules = Module::validateRules("Frontend_grouporders", $request, true);
+			$rules = Module::validateRules("Fe_discounts", $request, true);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -175,9 +175,9 @@ class Frontend_groupordersController extends Controller
 				return redirect()->back()->withErrors($validator)->withInput();;
 			}
 			
-			$insert_id = Module::updateRow("Frontend_grouporders", $request, $id);
+			$insert_id = Module::updateRow("Fe_discounts", $request, $id);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.frontend_grouporders.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.fe_discounts.index');
 			
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
@@ -185,18 +185,18 @@ class Frontend_groupordersController extends Controller
 	}
 
 	/**
-	 * Remove the specified frontend_grouporder from storage.
+	 * Remove the specified fe_discount from storage.
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id)
 	{
-		if(Module::hasAccess("Frontend_grouporders", "delete")) {
-			Frontend_grouporder::find($id)->delete();
+		if(Module::hasAccess("Fe_discounts", "delete")) {
+			Fe_discount::find($id)->delete();
 			
 			// Redirecting to index() method
-			return redirect()->route(config('laraadmin.adminRoute') . '.frontend_grouporders.index');
+			return redirect()->route(config('laraadmin.adminRoute') . '.fe_discounts.index');
 		} else {
 			return redirect(config('laraadmin.adminRoute')."/");
 		}
@@ -209,11 +209,11 @@ class Frontend_groupordersController extends Controller
 	 */
 	public function dtajax()
 	{
-		$values = DB::table('frontend_grouporders')->select($this->listing_cols)->whereNull('deleted_at');
+		$values = DB::table('fe_discounts')->select($this->listing_cols)->whereNull('deleted_at');
 		$out = Datatables::of($values)->make();
 		$data = $out->getData();
 
-		$fields_popup = ModuleFields::getModuleFields('Frontend_grouporders');
+		$fields_popup = ModuleFields::getModuleFields('Fe_discounts');
 		
 		for($i=0; $i < count($data->data); $i++) {
 			for ($j=0; $j < count($this->listing_cols); $j++) { 
@@ -222,7 +222,7 @@ class Frontend_groupordersController extends Controller
 					$data->data[$i][$j] = ModuleFields::getFieldValue($fields_popup[$col], $data->data[$i][$j]);
 				}
 				if($col == $this->view_col) {
-					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/frontend_grouporders/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+					$data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/fe_discounts/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
 				}
 				// else if($col == "author") {
 				//    $data->data[$i][$j];
@@ -231,12 +231,12 @@ class Frontend_groupordersController extends Controller
 			
 			if($this->show_action) {
 				$output = '';
-				if(Module::hasAccess("Frontend_grouporders", "edit")) {
-					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/frontend_grouporders/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+				if(Module::hasAccess("Fe_discounts", "edit")) {
+					$output .= '<a href="'.url(config('laraadmin.adminRoute') . '/fe_discounts/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
 				}
 				
-				if(Module::hasAccess("Frontend_grouporders", "delete")) {
-					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.frontend_grouporders.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+				if(Module::hasAccess("Fe_discounts", "delete")) {
+					$output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.fe_discounts.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
 					$output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
 					$output .= Form::close();
 				}

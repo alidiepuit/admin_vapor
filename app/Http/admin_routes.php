@@ -124,4 +124,12 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== FE_Type_Locations ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/fe_type_locations', 'LA\FE_Type_LocationsController');
 	Route::get(config('laraadmin.adminRoute') . '/fe_type_location_dt_ajax', 'LA\FE_Type_LocationsController@dtajax');
+
+	/* ================== Fe_discounts ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_discounts', 'LA\Fe_discountsController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_discount_dt_ajax', 'LA\Fe_discountsController@dtajax');
+
+	/* ================== FE_Status_Orders ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_status_orders', 'LA\FE_Status_OrdersController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_status_order_dt_ajax', 'LA\FE_Status_OrdersController@dtajax');
 });
