@@ -119,6 +119,7 @@
 						@la_display($module, 'grouporder_discount')
 						@la_display($module, 'grouporder_status')
 						@la_display($module, 'grouporder_tools')
+						@la_display($module, 'grouporder_code')
 					</div>
 				</div>
 			</div>

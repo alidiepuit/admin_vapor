@@ -23,7 +23,7 @@ class Frontend_groupordersController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'grouporder_location';
-	public $listing_cols = ['id', 'grouporder_location', 'grouporder_datetime', 'grouporder_typeloc', 'grouporder_latitude', 'grouporder_longitude', 'grouporder_user', 'grouporder_order', 'grouporder_amount', 'grouporder_cost', 'grouporder_discount', 'grouporder_status', 'grouporder_tools'];
+	public $listing_cols = ['id', 'grouporder_location', 'grouporder_datetime', 'grouporder_typeloc', 'grouporder_latitude', 'grouporder_longitude', 'grouporder_user', 'grouporder_order', 'grouporder_amount', 'grouporder_cost', 'grouporder_discount', 'grouporder_status', 'grouporder_tools', 'grouporder_code'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns

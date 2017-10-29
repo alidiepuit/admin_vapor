@@ -71,6 +71,7 @@
 					@la_input($module, 'grouporder_discount')
 					@la_input($module, 'grouporder_status')
 					@la_input($module, 'grouporder_tools')
+					@la_input($module, 'grouporder_code')
 					--}}
 				</div>
 			</div>

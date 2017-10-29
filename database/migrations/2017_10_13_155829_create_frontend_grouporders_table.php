@@ -30,6 +30,7 @@ class CreateFrontendGroupordersTable extends Migration
             ["grouporder_discount", "Discount", "Float", false, "0", 0, 11, false],
             ["grouporder_status", "Status", "Dropdown", false, "", 0, 0, false, "@fe_status_orders"],
             ["grouporder_tools", "Vật tư", "Textarea", false, "", 0, 0, false],
+            ["grouporder_code", "Code", "TextField", false, "", 0, 256, false],
         ]);
 		
 		/*
