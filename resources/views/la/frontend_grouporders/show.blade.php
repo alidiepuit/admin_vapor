@@ -118,6 +118,7 @@
 						@la_display($module, 'grouporder_cost')
 						@la_display($module, 'grouporder_discount')
 						@la_display($module, 'grouporder_status')
+						@la_display($module, 'grouporder_tools')
 					</div>
 				</div>
 			</div>

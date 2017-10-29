@@ -19,11 +19,11 @@ class CreateFeServicesTable extends Migration
     {
         Module::generate("Fe_services", 'fe_services', 'services_title', 'fa-android', [
             ["services_type", "Type Service", "Dropdown", false, "", 0, 0, false, "@fe_type_services"],
-            ["services_power", "Power", "Dropdown", false, "", 0, 0, true, ["1 - 1.5hp","2 - 2.5hp","3 - 3.5hp","4 - 4.5hp","1hp","1.5hp","2hp","2.5hp","5-5.5hp"]],
+            ["services_power", "Power", "Dropdown", false, "", 0, 0, true, ["1 - 1.5hp","2 - 2.5hp","3 - 3.5hp","4 - 4.5hp","1hp","1.5hp","2hp","2.5hp","5-5.5hp","---"]],
             ["services_cost", "Cost", "Integer", false, "", 0, 11, true],
             ["services_typemachine", "Type Machine", "Dropdown", false, "", 0, 0, false, "@fe_type_machines"],
-            ["services_grpmachine", "Group machine", "Dropdown", false, "", 0, 0, false, ["D\u00e0n n\u00f3ng","D\u00e0n l\u1ea1nh"]],
-            ["services_subservice", "Sub Service", "Dropdown", false, "", 0, 0, false, ["Th\u00e1o","L\u1eafp","Th\u00e1o v\u00e0 l\u1eafp"]],
+            ["services_grpmachine", "Group machine", "Dropdown", false, "", 0, 0, false, ["D\u00e0n n\u00f3ng","D\u00e0n l\u1ea1nh","---"]],
+            ["services_subservice", "Sub Service", "Dropdown", false, "", 0, 0, false, ["Th\u00e1o","L\u1eafp","Th\u00e1o v\u00e0 l\u1eafp","---"]],
         ]);
 		
 		/*
