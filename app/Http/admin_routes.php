@@ -140,4 +140,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== FE_Service_Tools ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/fe_service_tools', 'LA\FE_Service_ToolsController');
 	Route::get(config('laraadmin.adminRoute') . '/fe_service_tool_dt_ajax', 'LA\FE_Service_ToolsController@dtajax');
+
+	/* ================== FE_votes ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_votes', 'LA\FE_votesController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_vote_dt_ajax', 'LA\FE_votesController@dtajax');
 });
