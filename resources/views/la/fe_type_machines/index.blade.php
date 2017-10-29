@@ -61,6 +61,8 @@
 					{{--
 					@la_input($module, 'typemachine_title')
 					@la_input($module, 'typemachine_image')
+					@la_input($module, 'typemachine_cold')
+					@la_input($module, 'typemachine_warm')
 					--}}
 				</div>
 			</div>

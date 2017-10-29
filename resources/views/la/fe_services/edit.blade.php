@@ -37,6 +37,8 @@
 					@la_input($module, 'services_power')
 					@la_input($module, 'services_cost')
 					@la_input($module, 'services_typemachine')
+					@la_input($module, 'services_grpmachine')
+					@la_input($module, 'services_subservice')
 					--}}
                     <br>
 					<div class="form-group">

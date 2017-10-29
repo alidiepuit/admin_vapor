@@ -134,7 +134,8 @@ class FE_Type_ServicesController extends Controller
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("FE_Type_Services", "edit")) {			
+		if(Module::hasAccess("FE_Type_Services", "edit")) {	
+
 			$fe_type_service = FE_Type_Service::find($id);
 			if(isset($fe_type_service->id)) {	
 				$module = Module::get('FE_Type_Services');

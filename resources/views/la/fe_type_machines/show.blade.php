@@ -109,6 +109,8 @@
 					<div class="panel-body">
 						@la_display($module, 'typemachine_title')
 						@la_display($module, 'typemachine_image')
+						@la_display($module, 'typemachine_cold')
+						@la_display($module, 'typemachine_warm')
 					</div>
 				</div>
 			</div>

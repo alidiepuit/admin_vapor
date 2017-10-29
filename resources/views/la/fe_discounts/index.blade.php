@@ -61,6 +61,7 @@
 					{{--
 					@la_input($module, 'discount_percent')
 					@la_input($module, 'discount_amount')
+					@la_input($module, 'discount_service')
 					--}}
 				</div>
 			</div>

@@ -111,6 +111,8 @@
 						@la_display($module, 'services_power')
 						@la_display($module, 'services_cost')
 						@la_display($module, 'services_typemachine')
+						@la_display($module, 'services_grpmachine')
+						@la_display($module, 'services_subservice')
 					</div>
 				</div>
 			</div>

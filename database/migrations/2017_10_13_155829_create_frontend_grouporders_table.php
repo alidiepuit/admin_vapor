@@ -17,7 +17,7 @@ class CreateFrontendGroupordersTable extends Migration
      */
     public function up()
     {
-        Module::generate("Frontend_grouporders", 'frontend_grouporders', 'grouporder_user', 'fa-cube', [
+        Module::generate("Frontend_grouporders", 'frontend_grouporders', 'grouporder_location', 'fa-cube', [
             ["grouporder_location", "Địa điểm", "Textarea", false, "", 0, 256, true],
             ["grouporder_datetime", "Date", "Datetime", false, "", 0, 0, true],
             ["grouporder_typeloc", "Loại địa điểm", "Dropdown", false, "", 0, 0, false, "@fe_type_locations"],

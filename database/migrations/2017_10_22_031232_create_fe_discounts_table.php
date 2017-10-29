@@ -20,6 +20,7 @@ class CreateFeDiscountsTable extends Migration
         Module::generate("Fe_discounts", 'fe_discounts', 'discount_percent', 'fa-diamond', [
             ["discount_percent", "Percent", "Float", false, "", 0, 11, true],
             ["discount_amount", "Amount", "Integer", false, "", 0, 11, true],
+            ["discount_service", "Service", "Dropdown", false, "", 0, 0, false, "@fe_type_services"],
         ]);
 		
 		/*

@@ -109,6 +109,7 @@
 					<div class="panel-body">
 						@la_display($module, 'discount_percent')
 						@la_display($module, 'discount_amount')
+						@la_display($module, 'discount_service')
 					</div>
 				</div>
 			</div>

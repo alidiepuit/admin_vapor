@@ -30,12 +30,16 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				{!! Form::model($fe_type_machine, ['route' => [config('laraadmin.adminRoute') . '.fe_type_machines.update', $fe_type_machine->id ], 'method'=>'PUT', 'id' => 'fe_type_machine-edit-form']) !!}
-					@la_form($module)
-					
 					{{--
+            @la_form($module)
+            --}}
+					
+					
 					@la_input($module, 'typemachine_title')
-					@la_input($module, 'typemachine_image')
-					--}}
+					@la_input($module, 'typemachine_image', '', '', 'form-control', ['id' => 'typemachine_image'])
+					@la_input($module, 'typemachine_cold', '', '', 'form-control', ['id' => 'typemachine_cold'])
+					@la_input($module, 'typemachine_warm', '', '', 'form-control', ['id' => 'typemachine_warm'])
+					
                     <br>
 					<div class="form-group">
 						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/fe_type_machines') }}">Cancel</a></button>
@@ -49,11 +53,35 @@
 @endsection
 
 @push('scripts')
+<script src="/ckfinder/ckfinder.js"></script>
 <script>
 $(function () {
 	$("#fe_type_machine-edit-form").validate({
 		
 	});
+  function openPopup(ele) {
+       CKFinder.modal( {
+           chooseFiles: true,
+           onInit: function( finder ) {
+               finder.on( 'files:choose', function( evt ) {
+                   var file = evt.data.files.first();
+                   ele.value = file.getUrl();
+               } );
+               finder.on( 'file:choose:resizedImage', function( evt ) {
+                   ele.value = evt.data.resizedUrl;
+               } );
+           }
+       } );
+   }
+   $('#typemachine_image').click(function() {
+    openPopup(this);
+   });
+   $('#typemachine_cold').click(function() {
+    openPopup(this);
+   });
+   $('#typemachine_warm').click(function() {
+    openPopup(this);
+   });
 });
 </script>
 @endpush

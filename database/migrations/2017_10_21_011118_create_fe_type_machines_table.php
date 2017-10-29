@@ -20,6 +20,8 @@ class CreateFeTypeMachinesTable extends Migration
         Module::generate("Fe_type_machines", 'fe_type_machines', 'typemachine_title', 'fa-bookmark', [
             ["typemachine_title", "Title", "TextField", false, "", 0, 256, true],
             ["typemachine_image", "Image", "TextField", false, "", 0, 256, false],
+            ["typemachine_cold", "Image Cold", "TextField", false, "", 0, 256, false],
+            ["typemachine_warm", "Image Warm", "TextField", false, "", 0, 256, false],
         ]);
 		
 		/*

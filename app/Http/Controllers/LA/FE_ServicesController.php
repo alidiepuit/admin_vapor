@@ -23,7 +23,7 @@ class FE_ServicesController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'services_title';
-	public $listing_cols = ['id', 'services_type', 'services_power', 'services_cost', 'services_typemachine'];
+	public $listing_cols = ['id', 'services_type', 'services_power', 'services_cost', 'services_typemachine', 'services_grpmachine', 'services_subservice'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns

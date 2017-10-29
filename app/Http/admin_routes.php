@@ -132,4 +132,12 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	/* ================== FE_Status_Orders ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/fe_status_orders', 'LA\FE_Status_OrdersController');
 	Route::get(config('laraadmin.adminRoute') . '/fe_status_order_dt_ajax', 'LA\FE_Status_OrdersController@dtajax');
+
+	/* ================== FE_Sub_Services ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_sub_services', 'LA\FE_Sub_ServicesController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_sub_service_dt_ajax', 'LA\FE_Sub_ServicesController@dtajax');
+
+	/* ================== FE_Service_Tools ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/fe_service_tools', 'LA\FE_Service_ToolsController');
+	Route::get(config('laraadmin.adminRoute') . '/fe_service_tool_dt_ajax', 'LA\FE_Service_ToolsController@dtajax');
 });

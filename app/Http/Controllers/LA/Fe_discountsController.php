@@ -23,7 +23,7 @@ class Fe_discountsController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'discount_percent';
-	public $listing_cols = ['id', 'discount_percent', 'discount_amount'];
+	public $listing_cols = ['id', 'discount_percent', 'discount_amount', 'discount_service'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns

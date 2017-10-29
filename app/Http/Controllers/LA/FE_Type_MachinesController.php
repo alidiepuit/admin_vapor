@@ -23,7 +23,7 @@ class FE_Type_MachinesController extends Controller
 {
 	public $show_action = true;
 	public $view_col = 'typemachine_title';
-	public $listing_cols = ['id', 'typemachine_title', 'typemachine_image'];
+	public $listing_cols = ['id', 'typemachine_title', 'typemachine_image', 'typemachine_cold', 'typemachine_warm'];
 	
 	public function __construct() {
 		// Field Access of Listing Columns
@@ -134,7 +134,9 @@ class FE_Type_MachinesController extends Controller
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("FE_Type_Machines", "edit")) {			
+		if(Module::hasAccess("FE_Type_Machines", "edit")) {
+			$_SESSION['IsAuthorized'] = true;
+
 			$fe_type_machine = FE_Type_Machine::find($id);
 			if(isset($fe_type_machine->id)) {	
 				$module = Module::get('FE_Type_Machines');
