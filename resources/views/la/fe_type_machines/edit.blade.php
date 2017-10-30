@@ -49,39 +49,48 @@
 		</div>
 	</div>
 </div>
-
+<a href="/filemanager/dialog.php?type=2&field_id=typemachine_image&relative_url=1&callback=responsive_filemanager_callback" class="iframe-btn" id="iframe-image" style="display: none;">Open Filemanager</a>
+<a href="/filemanager/dialog.php?type=2&field_id=typemachine_cold&relative_url=1" class="iframe-btn" id="iframe-cold"  style="display: none;">Open Filemanager</a>
+<a href="/filemanager/dialog.php?type=2&field_id=typemachine_warm&relative_url=1" class="iframe-btn" id="iframe-warm"  style="display: none;">Open Filemanager</a>
 @endsection
 
 @push('scripts')
 <script src="/ckfinder/ckfinder.js"></script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+<link  href="/fancybox/jquery.fancybox.min.css" rel="stylesheet">
 <script>
 $(function () {
-	$("#fe_type_machine-edit-form").validate({
-		
-	});
-  function openPopup(ele) {
-       CKFinder.modal( {
-           chooseFiles: true,
-           onInit: function( finder ) {
-               finder.on( 'files:choose', function( evt ) {
-                   var file = evt.data.files.first();
-                   ele.value = file.getUrl();
-               } );
-               finder.on( 'file:choose:resizedImage', function( evt ) {
-                   ele.value = evt.data.resizedUrl;
-               } );
-           }
-       } );
-   }
-   $('#typemachine_image').click(function() {
-    openPopup(this);
-   });
-   $('#typemachine_cold').click(function() {
-    openPopup(this);
-   });
-   $('#typemachine_warm').click(function() {
-    openPopup(this);
-   });
+	$("#fe_type_machine-edit-form").submit(function() {
+    var linkImage = $('#typemachine_image').val();
+    if (linkImage.length > 0 && !linkImage.match("^\/static\/images\/")) {
+      $('#typemachine_image').val('/static/images/' + linkImage);
+    }
+    var linkCold = $('#typemachine_cold').val();
+    if (linkCold.length > 0 && !linkCold.match("^\/static\/images\/")) {
+      $('#typemachine_cold').val('/static/images/' + linkCold);
+    }
+    var linkWarm = $('#typemachine_warm').val();
+    if (linkWarm.length > 0 && !linkWarm.match("^\/static\/images\/")) {
+      $('#typemachine_warm').val('/static/images/' + linkWarm);
+    }
+  }).validate({
+    
+  });
+  $('.iframe-btn').fancybox({ 
+    'width'   : 900,
+    'height'  : 600,
+    'type'    : 'iframe',
+    'autoScale'     : false
+  });
+  $('#typemachine_image').click(function() {
+    $('#iframe-image').click();
+  });
+  $('#typemachine_cold').click(function() {
+    $('#iframe-cold').click();
+  });
+  $('#typemachine_warm').click(function() {
+    $('#iframe-warm').click();
+  });
 });
 </script>
 @endpush
