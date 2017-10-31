@@ -550,6 +550,8 @@ $(function () {
 		});
 	});
 	$("#dt_module_fields").DataTable({
+		"pageLength": 50,
+		"lengthMenu": [ 50, 75, 100 ],
 		"initComplete": function(settings, json) {
 			console.log( 'DataTables has finished its initialisation.' );
 			console.log("Win: "+$(window).height()+" header: "+$(".main-header").height());

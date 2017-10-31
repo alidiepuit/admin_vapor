@@ -134,9 +134,7 @@ class FE_Type_MachinesController extends Controller
 	 */
 	public function edit($id)
 	{
-		if(Module::hasAccess("FE_Type_Machines", "edit")) {
-			$_SESSION['IsAuthorized'] = true;
-
+		if(Module::hasAccess("FE_Type_Machines", "edit")) {			
 			$fe_type_machine = FE_Type_Machine::find($id);
 			if(isset($fe_type_machine->id)) {	
 				$module = Module::get('FE_Type_Machines');

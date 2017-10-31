@@ -150,7 +150,8 @@ $(function () {
 	
 	$('input[name=icon]').iconpicker();
 	$("#dt_modules").DataTable({
-		
+		"pageLength": 50,
+		"lengthMenu": [ 50, 75, 100 ],
 	});
 	$("#module-add-form").validate({
 		
