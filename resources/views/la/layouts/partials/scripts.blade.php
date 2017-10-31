@@ -19,6 +19,7 @@
 <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 
 
+<script src="{{ asset('la-assets/js/custom.js') }}" type="text/javascript"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
