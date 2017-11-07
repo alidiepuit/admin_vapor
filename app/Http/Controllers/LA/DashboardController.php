@@ -33,6 +33,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // pr($_SESSION);
         return view('la.dashboard');
     }
 }

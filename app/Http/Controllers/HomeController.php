@@ -22,7 +22,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        
+        // pr($_SESSION);
+        // pr(bcrypt('advapor!2017'));
     }
 
     /**
